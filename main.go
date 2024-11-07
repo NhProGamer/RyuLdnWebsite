@@ -11,6 +11,7 @@ import (
 )
 
 func main() {
+	gin.SetMode(gin.ReleaseMode)
 	config.LoadEnvVariables()
 
 	services.InitRedis()
