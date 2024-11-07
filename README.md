@@ -20,7 +20,7 @@ Make sure you have Go installed, then build the project:
 
 ```bash
 go build
-don't forget to have public and static folders
+# Don't forget to have public and static folders on the same directory of the binary
 ```
 
 ## Environment Variables
