@@ -1,11 +1,11 @@
-$(document).ready(function () {
+$(document).ready(function() {
     function encode(r) {
-        return r.replace(/[\x26\x0A\<>'"]/g, function (r) {
+        return r.replace(/[\x26\x0A\<>'"]/g, function(r) {
             return "&#" + r.charCodeAt(0) + ";";
         });
     }
 
-    $.getJSON("/api", function (data) {
+    $.getJSON("/api", function(data) {
         $(".players-public").text(data.public_player_count);
         $(".players-private").text(data.private_player_count);
         $(".players-total").text(data.total_player_count);
@@ -18,10 +18,10 @@ $(document).ready(function () {
         $(".proxy-server-total").text(data.master_proxy_count);
     });
 
-    $.getJSON("/api/public_games", function (data) {
+    $.getJSON("/api/public_games", function(data) {
         $(".public-games").empty();
         $(".private-games").empty();
-        $.each(data, function () {
+        $.each(data, function() {
             let typeOfGame = this.is_public ? ".public-games" : ".private-games";
             $(typeOfGame).append(`
                 <div class="bg-surface1 rounded-md shadow-md mb-4">
