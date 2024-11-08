@@ -74,6 +74,7 @@
                         surface0: "#313244",
                         surface1: "#45475a",
                         accent: "#b4befe",
+                        accent2: "#89b4fa",
                         accent_error: "#f38ba8",
                     },
                     gridTemplateColumns: {
@@ -101,13 +102,12 @@
     <div class="container mx-auto flex justify-between items-center h-full">
         <!-- Left side (Image + Text) -->
         <div class="font-medium flex items-center space-x-2">
-            <img
-                    src="static/img/logo.png"
-                    alt="Logo"
-                    width="48"
-                    height="48"
-                    class="h-12 w-12"
-            />
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 2048 2048">
+                <path class="left-jc wifi text-accent2 fill-current" d="M256,274H448a0,0,0,0,1,0,0V1774a0,0,0,0,1,0,0H256A256,256,0,0,1,0,1518V530A256,256,0,0,1,256,274Z"/>
+                <path class="right-jc text-accent_error fill-current" d="M1600,274h192a256,256,0,0,1,256,256v988a256,256,0,0,1-256,256H1600a0,0,0,0,1,0,0V274A0,0,0,0,1,1600,274Z"/>
+                <path class="text text-accent fill-current" fill-rule="evenodd" d="M530.908,1577.06q12.47,11.115,35.935,11.11H739.97q18.523,0,30.748-9.13t12.225-25.69q0-16.545-12.225-25.81t-30.748-9.26H601.419V1258.96q0-18.525-11.361-30.01t-30.13-11.48q-18.772,0-30.131,11.48t-11.361,30.01v280.56Q518.436,1565.95,530.908,1577.06Zm308.962,0q12.468,11.115,35.935,11.11h99.776q83.233,0,129.039-47.79t45.82-134.23q0-41.49-9.51-73.59t-25.32-52.36a130.291,130.291,0,0,0-38.52-33.22,160.907,160.907,0,0,0-47.05-18.03,260.534,260.534,0,0,0-52.977-5.06H875.805q-23.466,0-35.935,11.11T827.4,1272.54v266.98Q827.4,1565.95,839.87,1577.06Zm139.663-286.24q44.455,0,66.187,30.01t21.73,85.32a201.148,201.148,0,0,1-2.71,33.59,140.244,140.244,0,0,1-9.14,31.24,94.121,94.121,0,0,1-16.18,26.18,70.621,70.621,0,0,1-24.94,17.66q-15.195,6.675-34.453,6.67H910.381V1290.82h69.152Zm240.547,293.9q10.38,10.11,29.39,10.12t29.52-10.12q10.485-10.125,10.49-29.89V1344.91h0.99l144.23,227.7q8.16,13.1,17.29,17.66t28.16,4.57q49.14,0,49.14-51.62V1257.48q0-19.755-10.49-29.89t-29.52-10.12q-19.02,0-29.51,10.12-10.5,10.14-10.5,29.89v215.85h-0.98L1303.07,1239.2q-13.1-21.72-41.5-21.73-26.67,0-39.26,11.48t-12.6,36.92v288.96Q1209.71,1574.6,1220.08,1584.72Z"/>
+                <path class="wifi text-accent stroke-current" stroke-linecap="round" stroke-linejoin="round" stroke-width="100.0px" fill-rule="evenodd" fill="none" d="M844.079,736.183a247.559,247.559,0,0,1,362.481-1.259M735.02,583.655a396.032,396.032,0,0,1,579.91-2.022M589.555,447.081a593.96,593.96,0,0,1,869.905-3.041M1025.92,957.025a50.078,50.078,0,1,1,49.73-50.07A49.9,49.9,0,0,1,1025.92,957.025Z"/>
+            </svg>
             <span>RyuLdn</span>
         </div>
 
@@ -214,7 +214,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
+                        <tr class="border-b border-gray-300">
                             <th class="font-normal flex items-center">
                                 <svg
                                         viewBox="0 0 24 24"
@@ -236,7 +236,7 @@
                             <td class="players-private text-right"></td>
                             <td class="players-total text-right"></td>
                         </tr>
-                        <tr>
+                        <tr class="border-b border-gray-300">
                             <th class="font-normal flex items-center">
                                 <svg
                                         viewBox="0 0 24 24"
@@ -253,7 +253,7 @@
                             <td class="games-private text-right"></td>
                             <td class="games-total text-right"></td>
                         </tr>
-                        <tr>
+                        <tr class="border-b border-gray-300">
                             <th class="font-normal flex items-center space-x-2 w-full">
                                 <svg
                                         class="inline-block h-5 w-5 flex-shrink-0"
