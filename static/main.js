@@ -5,7 +5,7 @@ $(document).ready(function () {
         });
     }
 
-    $.getJSON("https://ryuldnweb.vudjun.com/api", function (data) {
+    $.getJSON("/api", function (data) {
         $(".players-public").text(data.public_player_count);
         $(".players-private").text(data.private_player_count);
         $(".players-total").text(data.total_player_count);
@@ -18,7 +18,7 @@ $(document).ready(function () {
         $(".proxy-server-total").text(data.master_proxy_count);
     });
 
-    $.getJSON("https://ryuldnweb.vudjun.com/api/public_games", function (data) {
+    $.getJSON("/api/public_games", function (data) {
         $(".public-games").empty();
         $(".private-games").empty();
         $.each(data, function () {
