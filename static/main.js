@@ -5,7 +5,7 @@ $(document).ready(function () {
         });
     }
 
-    $.getJSON("/api", function (data) {
+    $.getJSON("https://ryuldnweb.vudjun.com/api", function (data) {
         $(".players-public").text(data.public_player_count);
         $(".players-private").text(data.private_player_count);
         $(".players-total").text(data.total_player_count);
@@ -18,10 +18,12 @@ $(document).ready(function () {
         $(".proxy-server-total").text(data.master_proxy_count);
     });
 
-    $.getJSON("/api/public_games", function (data) {
+    $.getJSON("https://ryuldnweb.vudjun.com/api/public_games", function (data) {
         $(".public-games").empty();
+        $(".private-games").empty();
         $.each(data, function () {
-            $(".public-games").append(`
+            let typeOfGame = this.is_public ? ".public-games" : ".private-games";
+            $(typeOfGame).append(`
                 <div class="bg-surface1 rounded-md shadow-md mb-4">
                     <div class="p-4 border-b border-surface0">
                         <div class="flex items-center">
@@ -56,5 +58,11 @@ $(document).ready(function () {
                 </div>
             `);
         });
+        if ($(".public-games").is(":empty")) {
+            $(".public-games").text("Sadly, there are no public games :(");
+        }
+        if ($(".private-games").is(":empty")) {
+            $(".private-games").text("Sadly, there are no private games :(");
+        }
     });
 });
