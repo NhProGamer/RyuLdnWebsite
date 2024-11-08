@@ -22,7 +22,7 @@ $(document).ready(function () {
         $(".public-games").empty();
         $(".private-games").empty();
         $.each(data, function () {
-            let typeOfGame = this.is_public ? ".public-games" : ".private-games";
+            let typeOfGame = this.is_public ? ".private-games" : ".public-games";
             $(typeOfGame).append(`
                 <div class="bg-surface1 rounded-md shadow-md mb-4">
                     <div class="p-4 border-b border-surface0">
