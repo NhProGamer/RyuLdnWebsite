@@ -54,7 +54,6 @@ func GetLDNData(c *gin.Context) {
 
 func GetPublicGames(c *gin.Context) {
 	var result []Game
-	var gamesMap map[string]Game
 	res, err := services.RedisClient.JSONGet("games", ".")
 	if err != nil {
 		log.Println(err)
@@ -62,15 +61,11 @@ func GetPublicGames(c *gin.Context) {
 		return
 	}
 
-	err = json.Unmarshal(res.([]byte), &gamesMap)
+	err = json.Unmarshal(res.([]byte), &result)
 	if err != nil {
 		log.Println(err)
 		c.JSON(http.StatusInternalServerError, gin.H{"message": err.Error()})
 		return
-	}
-
-	for _, game := range gamesMap {
-		result = append(result, game)
 	}
 
 	c.JSON(http.StatusOK, result)
