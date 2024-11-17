@@ -39,7 +39,7 @@ $(document).ready(function() {
         $(".ap-test").html(data.ap_test ? icons.check : icons.cross);
         $(".test-date").text(formattedDate);
 
-        $(".server-status").html((data.ping_test && data.init_test && data.ap_test) ? '<span class="text-accent">Server Online</span>' + icons.check : (data.ping_test || data.init_test || data.ap_test) ? '<span class="text-accent_warn">Server Online</span>' + icons.warn : '<span class="text-accent_error">Server Online</span>' + icons.cross);
+        $(".server-status").html((data.ping_test && data.init_test && data.ap_test) ? '<span class="text-accent">Server Online</span>' + icons.check : (data.ping_test || data.init_test || data.ap_test) ? '<span class="text-accent_warn">Server Warn</span>' + icons.warn : '<span class="text-accent_error">Server Offline</span>' + icons.cross);
     });
 
     $.getJSON("/api/public_games/", function(data) {
