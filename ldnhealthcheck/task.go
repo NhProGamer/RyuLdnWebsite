@@ -10,7 +10,7 @@ type RyuLdnTests struct {
 	PingTest   bool      `json:"ping_test"`
 	InitTest   bool      `json:"init_test"`
 	APTest     bool      `json:"ap_test"`
-	UpdateTime time.Time `json:"update_time"`
+	UpdateTime time.Time `json:"test_date"`
 }
 
 var ryuLdnTestsPtr atomic.Pointer[RyuLdnTests]

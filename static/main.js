@@ -5,6 +5,12 @@ $(document).ready(function() {
         });
     }
 
+    let icons = {
+        check: '<svg class="h-5 w-5 flex-shrink-0 text-accent inline-block" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clip-rule="evenodd" /></svg>',
+        cross: '<svg class="h-5 w-5 flex-shrink-0 text-accent_error inline-block" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.72 6.97a.75.75 0 1 0-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 1 0 1.06 1.06L12 13.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L13.06 12l1.72-1.72a.75.75 0 1 0-1.06-1.06L12 10.94l-1.72-1.72Z" clip-rule="evenodd" /></svg>',
+        warn: '<svg class="h-5 w-5 flex-shrink-0 text-accent_warn inline-block" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd" /></svg>',
+    };
+
     $.getJSON("/api/", function(data) {
         $(".players-public").text(data.public_player_count);
         $(".players-private").text(data.private_player_count);
@@ -16,6 +22,24 @@ $(document).ready(function() {
 
         $(".in-progress-total").text(data.in_progress_count);
         $(".proxy-server-total").text(data.master_proxy_count);
+    });
+
+    $.getJSON("/api/status", function(data) {
+        const date = new Date(data.test_date);
+
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = String(date.getFullYear());
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+
+        const formattedDate = `${day}/${month}/${year} ${hours}:${minutes}`;
+        $(".ping-test").html(data.ping_test ? icons.check : icons.cross);
+        $(".init-test").html(data.init_test ? icons.check : icons.cross);
+        $(".ap-test").html(data.ap_test ? icons.check : icons.cross);
+        $(".test-date").text(formattedDate);
+
+        $(".server-status").html((data.ping_test && data.init_test && data.ap_test) ? '<span class="text-accent">Server Online</span>' + icons.check : (data.ping_test || data.init_test || data.ap_test) ? '<span class="text-accent_warn">Server Online</span>' + icons.warn : '<span class="text-accent_error">Server Online</span>' + icons.cross);
     });
 
     $.getJSON("/api/public_games/", function(data) {
