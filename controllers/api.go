@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"RyuLdnWebsite/ldnhealthcheck"
 	"RyuLdnWebsite/services"
 	"encoding/json"
 	"github.com/gin-gonic/gin"
@@ -69,4 +70,8 @@ func GetPublicGames(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, result)
+}
+
+func GetLdnStatus(c *gin.Context) {
+	c.JSON(http.StatusOK, ldnhealthcheck.GetTests())
 }

@@ -2,12 +2,16 @@ package main
 
 import (
 	"RyuLdnWebsite/config"
+	"RyuLdnWebsite/ldnhealthcheck"
 	"RyuLdnWebsite/routes"
 	"RyuLdnWebsite/services"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"log"
 	"net"
+	"strconv"
 	"strings"
+	"time"
 )
 
 func main() {
@@ -15,6 +19,28 @@ func main() {
 	config.LoadEnvVariables()
 
 	services.InitRedis()
+
+	ldnHost := config.GetEnv("LDN_HOST")
+	ldnPort := config.GetEnv("LDN_PORT")
+	ldnHeathcheckTime := config.GetEnv("LDN_HEALTHCHECK_TIME")
+
+	if ldnHost == "" {
+		log.Fatal("LDN_HOST is not set")
+	}
+	if ldnPort == "" {
+		log.Fatal("LDN_PORT is not set")
+	}
+	numLdnHostPort, err := strconv.Atoi(ldnPort)
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+	numLdnHeathcheckTime, err := strconv.Atoi(ldnHeathcheckTime)
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+	ldnhealthcheck.SceduleTask(time.Duration(numLdnHeathcheckTime)*time.Second, ldnHost, numLdnHostPort, 30*time.Second)
 
 	r := gin.Default()
 	r.Static("/static", "static")
@@ -31,7 +57,6 @@ func main() {
 
 	routes.InitRoutes(r)
 
-	// Démarrer le serveur
 	host := config.GetEnv("HOST")
 	port := config.GetEnv("PORT")
 	if host == "" {

@@ -10,5 +10,6 @@ func InitRoutes(r *gin.Engine) {
 	{
 		api.GET("/", controllers.GetLDNData)
 		api.GET("/public_games", controllers.GetPublicGames)
+		api.GET("/status", controllers.GetLdnStatus)
 	}
 }
